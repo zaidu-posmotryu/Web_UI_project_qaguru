@@ -43,6 +43,16 @@ public class OpenBankTest extends TestBase {
     }
 
     @Test
+    @Description("Проверка мин/макс значений сумм в онлайн-калькуляторе")
+    @DisplayName("Проверка мин/макс значений сумм в онлайн-калькуляторе")
+    void checkMaxMinOnlineCalculator() {
+        step("Открыть сайт", () -> open(baseUrl));
+        step("Подтвердить, что минимальная сумма вклада соответствует требуемой", () -> openBankMainPage.minSumCalculator("50 000"));
+        step("Подтвердить, что максимальная сумма вклада соответствует требуемой", () -> openBankMainPage.maxSumCalculator("10 млн"));
+
+    }
+
+    @Test
     @Description("Проверка курсов покупки и продажи USD в отделениях")
     @DisplayName("Проверка курсов покупки и продажи USD в отделениях")
     void checkExchangeRates() {
@@ -51,8 +61,8 @@ public class OpenBankTest extends TestBase {
     }
 
     @Test
-    @Description("Проверка правильности URL Интернет-банка для частных лиц")
-    @DisplayName("Проверка правильности URL Интернет-банка для частных лиц")
+    @Description("Проверка URL Интернет-банка для частных лиц")
+    @DisplayName("Проверка URL Интернет-банка для частных лиц")
     void checkInternetBankUrl() {
         step("Открыть главную страницу сайта", () -> open(baseUrl));
         step("Перейти на страницу ИБ для частных лиц по кнопке", () -> openBankIntBankPage.goToInternetBankPage());

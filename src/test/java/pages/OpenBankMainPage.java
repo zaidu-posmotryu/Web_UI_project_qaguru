@@ -2,10 +2,10 @@ package pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
+import static com.codeborne.selenide.Selenide.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class OpenBankMainPage {
@@ -14,36 +14,45 @@ public class OpenBankMainPage {
             engSite = $(".ant-typography.open-ui-text.open-ui-text-theme-default.smallText.main-page-header__main-nav-locale-text"),
             engChapters = $(".sections-menu-items"),
             siteSearch = $(".open-ui-icon.search-open"),
-            searchInput = $("input[type='search']");
+            searchInput = $("input[type='search']"),
+    selectorFrame = $(By.cssSelector(".iframe-deposits iframe"));
     ElementsCollection
             results = $$(".card"),
-            rates = $$(".main-page-exchange__rate");
+            rates = $$(".main-page-exchange__rate"),
+    depositSum = $$(".ant-typography.open-ui-text.open-ui-text-theme-default.regularText.legend-text");
 
     public OpenBankMainPage siteTitleCheck(String value) {
         siteTitle.shouldHave(text(value));
         return this;
     }
-
     public OpenBankMainPage goToEnVersion(String value) {
         engSite.shouldHave(text(value)).click();
         return this;
     }
-
     public OpenBankMainPage engChaptersCheck(String value) {
         engChapters.shouldHave(text(value));
         return this;
     }
-
     public OpenBankMainPage siteSearchStart(String value) {
         siteSearch.click();
         searchInput.setValue(value).pressEnter();
         return this;
     }
-
     public OpenBankMainPage siteSearchControl(String value) {
         for (SelenideElement element : results) {
             element.shouldHave(text(value));
         }
+        return this;
+    }
+
+    public OpenBankMainPage minSumCalculator(String value) {
+        switchTo().frame(selectorFrame);
+        depositSum.get(0).shouldHave(text(value));
+        return this;
+    }
+    public OpenBankMainPage maxSumCalculator(String value) {
+        switchTo().frame(selectorFrame);
+        depositSum.get(1).shouldHave(text(value));
         return this;
     }
 
