@@ -15,29 +15,33 @@ public class OpenBankMainPage {
             engChapters = $(".sections-menu-items"),
             siteSearch = $(".open-ui-icon.search-open"),
             searchInput = $("input[type='search']"),
-    selectorFrame = $(By.cssSelector(".iframe-deposits iframe"));
+            selectorFrame = $(By.cssSelector(".iframe-deposits iframe"));
     ElementsCollection
             results = $$(".card"),
             rates = $$(".main-page-exchange__rate"),
-    depositSum = $$(".ant-typography.open-ui-text.open-ui-text-theme-default.regularText.legend-text");
+            depositSum = $$(".ant-typography.open-ui-text.open-ui-text-theme-default.regularText.legend-text");
 
     public OpenBankMainPage siteTitleCheck(String value) {
         siteTitle.shouldHave(text(value));
         return this;
     }
+
     public OpenBankMainPage goToEnVersion(String value) {
         engSite.shouldHave(text(value)).click();
         return this;
     }
+
     public OpenBankMainPage engChaptersCheck(String value) {
         engChapters.shouldHave(text(value));
         return this;
     }
+
     public OpenBankMainPage siteSearchStart(String value) {
         siteSearch.click();
         searchInput.setValue(value).pressEnter();
         return this;
     }
+
     public OpenBankMainPage siteSearchControl(String value) {
         for (SelenideElement element : results) {
             element.shouldHave(text(value));
@@ -45,14 +49,10 @@ public class OpenBankMainPage {
         return this;
     }
 
-    public OpenBankMainPage minSumCalculator(String value) {
+    public OpenBankMainPage limitSumCalculator(String min, String max) {
         switchTo().frame(selectorFrame);
-        depositSum.get(0).shouldHave(text(value));
-        return this;
-    }
-    public OpenBankMainPage maxSumCalculator(String value) {
-        switchTo().frame(selectorFrame);
-        depositSum.get(1).shouldHave(text(value));
+        depositSum.get(0).shouldHave(text(String.valueOf(min)));
+        depositSum.get(1).shouldHave(text(String.valueOf(max)));
         return this;
     }
 

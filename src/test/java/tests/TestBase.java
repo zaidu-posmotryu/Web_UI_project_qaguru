@@ -25,7 +25,7 @@ public class TestBase {
             SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
             DriverSettings.configure();
             Configuration.baseUrl = "https://www.open.ru";
-            Configuration.pageLoadTimeout = 40000;
+            Configuration.pageLoadTimeout = 50000;
             Configuration.browserSize = "1600x1200";
         }
 
