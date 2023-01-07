@@ -28,7 +28,7 @@ public class OpenBankTest extends TestBase {
     @ValueSource(strings = {"RETAIL BANKING", "SME`S", "CORPORATE CLIENTS", "FINANCIAL INSTITUTIONS", "PRIVATE BANKING"})
     @ParameterizedTest(name = "Проверка заголовков на английской версии сайта {0}")
     @Description("Проверка заголовков на английской версии сайта")
-    //@DisplayName("Проверка заголовков на английской версии сайта")
+    @DisplayName("Проверка заголовков на английской версии сайта")
     void checkEnChapters(String testData) {
         step("Открыть сайт", () -> open(baseUrl));
         step("Перейти на английскую версию", () -> openBankMainPage.goToEnVersion("EN"));
@@ -47,7 +47,7 @@ public class OpenBankTest extends TestBase {
     @CsvSource(value = {"50 000, 10 млн"})
     @ParameterizedTest(name = "Проверка мин/макс значений сумм в онлайн-калькуляторе")
     @Description("Проверка мин/макс значений сумм в онлайн-калькуляторе")
-    //@DisplayName("Проверка мин/макс значений сумм в онлайн-калькуляторе")
+    @DisplayName("Проверка мин/макс значений сумм в онлайн-калькуляторе")
     void checkMinMaxOnlineCalculator(String min, String max) {
         step("Открыть сайт", () -> open(baseUrl));
         step("Подтвердить, что минимальная и максимальная суммы вклада соответствуют требуемым", () -> openBankMainPage.limitSumCalculator(min, max));

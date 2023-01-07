@@ -3,43 +3,48 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import config.Project;
-import helpers.AllureAttachments;
-import helpers.DriverSettings;
-import helpers.DriverUtils;
+import helpers.Attachments;
 import io.qameta.allure.junit5.AllureJunit5;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
-import static com.codeborne.selenide.Configuration.baseUrl;
+import java.util.Map;
+
 import static com.codeborne.selenide.Selenide.open;
 
 @ExtendWith({AllureJunit5.class})
 public class TestBase {
 
-       @BeforeAll
-        static void setUp() {
-            SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-            DriverSettings.configure();
-            Configuration.baseUrl = "https://www.open.ru";
-            Configuration.pageLoadTimeout = 50000;
-            Configuration.browserSize = "1600x1200";
-        }
+    @BeforeAll
+    static void setUp() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-      /*  @AfterEach
-        public void addAttachments() {
-            String sessionId = DriverUtils.getSessionId();
-
-            AllureAttachments.addScreenshotAs("Last screenshot");
-            AllureAttachments.addPageSource();
-            AllureAttachments.addBrowserConsoleLogs();
-            Selenide.closeWebDriver();
-
-           /* if (Project.isVideoOn()) {
-                AllureAttachments.addVideo(sessionId);
-            }
-        }*/
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browserName", "chrome");
+        capabilities.setCapability("browserVersion", "100.0");
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
+        Configuration.baseUrl = "https://www.open.ru";
+        Configuration.pageLoadTimeout = 200000;
+        Configuration.browserSize = "1600x1200";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
+
+    @AfterEach
+    void addAttachments() {
+
+        Attachments.screenshotAs("Скриншот");
+        Attachments.pageSource();
+        Attachments.browserConsoleLogs();
+        Attachments.addVideo();
+        //Selenide.closeWebDriver();
+
+    }
+}
+

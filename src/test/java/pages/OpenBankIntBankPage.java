@@ -5,14 +5,16 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.github.javafaker.Faker;
 
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class OpenBankIntBankPage {
     SelenideElement
             buttonIntBank = $(".ant-btn.ant-btn-round.ant-btn-sm.main-page-header__sub-nav-internet-bank-button"),
-            listIntBank = $("a[href='https://ib.open.ru/login']"),
+            listIntBank = $x("//span[contains(text(),'Интернет-банк Открытия')]"),
             loginField = $(".wb-editable__input"),
             passwordField = $(".wb-editable__input.wb-password-toggle-input"),
             submitAuth = $("button[type='submit']"),
@@ -28,7 +30,7 @@ public class OpenBankIntBankPage {
 
     public OpenBankIntBankPage goToInternetBankPage() {
         buttonIntBank.click();
-        listIntBank.click();
+        listIntBank.shouldBe(visible).click();
         return this;
     }
 
