@@ -18,7 +18,7 @@ public class OpenBankTest extends TestBase {
     OpenBankIntBankPage openBankIntBankPage = new OpenBankIntBankPage();
 
     @Test
-    @Description("Проверка заголовка первого раздела сайта")
+    //@Description("Проверка заголовка первого раздела сайта")
     @DisplayName("Проверка заголовка первого раздела сайта")
     void checkTitle() {
         step("Открыть сайт", () -> open(baseUrl));
@@ -27,7 +27,7 @@ public class OpenBankTest extends TestBase {
 
     @ValueSource(strings = {"RETAIL BANKING", "SME`S", "CORPORATE CLIENTS", "FINANCIAL INSTITUTIONS", "PRIVATE BANKING"})
     @ParameterizedTest(name = "Проверка заголовков на английской версии сайта {0}")
-    @Description("Проверка заголовков на английской версии сайта")
+    //@Description("Проверка заголовков на английской версии сайта")
     @DisplayName("Проверка заголовков на английской версии сайта")
     void checkEnChapters(String testData) {
         step("Открыть сайт", () -> open(baseUrl));
@@ -36,7 +36,7 @@ public class OpenBankTest extends TestBase {
     }
 
     @Test
-    @Description("Проверка поиска по сайту")
+    //@Description("Проверка поиска по сайту")
     @DisplayName("Проверка поиска по сайту")
     void checkSiteSearch() {
         step("Открыть сайт", () -> open(baseUrl));
@@ -46,7 +46,7 @@ public class OpenBankTest extends TestBase {
 
     @CsvSource(value = {"50 000, 10 млн"})
     @ParameterizedTest(name = "Проверка мин/макс значений сумм в онлайн-калькуляторе")
-    @Description("Проверка мин/макс значений сумм в онлайн-калькуляторе")
+    //@Description("Проверка мин/макс значений сумм в онлайн-калькуляторе")
     @DisplayName("Проверка мин/макс значений сумм в онлайн-калькуляторе")
     void checkMinMaxOnlineCalculator(String min, String max) {
         step("Открыть сайт", () -> open(baseUrl));
@@ -54,7 +54,7 @@ public class OpenBankTest extends TestBase {
     }
 
     @Test
-    @Description("Проверка курсов покупки и продажи USD в отделениях")
+    //@Description("Проверка курсов покупки и продажи USD в отделениях")
     @DisplayName("Проверка курсов покупки и продажи USD в отделениях")
     void checkExchangeRates() {
         step("Открыть сайт", () -> open(baseUrl));
@@ -62,7 +62,7 @@ public class OpenBankTest extends TestBase {
     }
 
     @Test
-    @Description("Проверка URL Интернет-банка для частных лиц")
+    //@Description("Проверка URL Интернет-банка для частных лиц")
     @DisplayName("Проверка URL Интернет-банка для частных лиц")
     void checkInternetBankUrl() {
         step("Открыть главную страницу сайта", () -> open(baseUrl));
@@ -71,7 +71,7 @@ public class OpenBankTest extends TestBase {
     }
 
     @Test
-    @Description("Проверка входа в Интернет-банк с некорректными авторизационными данными")
+    //@Description("Проверка входа в Интернет-банк с некорректными авторизационными данными")
     @DisplayName("Проверка входа в Интернет-банк с некорректными авторизационными данными")
     void checkInternetBankAuthFail() {
         step("Открыть главную страницу сайта", () -> open(baseUrl));

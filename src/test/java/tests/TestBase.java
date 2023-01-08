@@ -29,6 +29,7 @@ public class TestBase {
                 "enableVNC", true,
                 "enableVideo", true
         ));
+        System.setProperty("chromeoptions.prefs", "intl.accept_languages=ru");
         Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://www.open.ru";
         Configuration.pageLoadTimeout = 200000;
