@@ -1,0 +1,17 @@
+{
+  "base": {
+    "project": "Quick_Project_homework:Wildberries_search",
+    "environment": "удаленный запуск с selenoid",
+    "comment": "оно работает",
+    "reportLink": "",
+    "language": "ru",
+    "messenger": "telegram",
+    "allureFolder": "allure-report/",
+    "enableChart": true
+  },
+  "telegram": {
+    "token": "5976597653:AAHw8EWHbXOXuqeUS_4jq0u9CgFE6FQOFyE",
+    "chat": "-1001821930730",
+    "replyTo": ""
+  }
+}

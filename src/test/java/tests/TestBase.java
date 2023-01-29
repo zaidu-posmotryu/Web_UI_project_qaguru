@@ -34,7 +34,7 @@ public class TestBase {
         Configuration.baseUrl = "https://www.open.ru";
         Configuration.pageLoadTimeout = 200000;
         Configuration.browserSize = "1600x1200";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        //Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
 
     @AfterEach
