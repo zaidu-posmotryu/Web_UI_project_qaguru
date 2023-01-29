@@ -1,6 +1,7 @@
 package tests;
 
-import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,62 +18,69 @@ public class OpenBankTest extends TestBase {
     OpenBankMainPage openBankMainPage = new OpenBankMainPage();
     OpenBankIntBankPage openBankIntBankPage = new OpenBankIntBankPage();
 
+    @Feature("Заголовки разделов сайта")
+    @Story("Первый раздел на главной странице")
     @Test
-    //@Description("Проверка заголовка первого раздела сайта")
-    @DisplayName("Проверка заголовка первого раздела сайта")
+    @DisplayName("Проверить, что заголовок корректен")
     void checkTitle() {
         step("Открыть сайт", () -> open(baseUrl));
         step("Подтвердить, что заголовок соответствует требуемому", () -> openBankMainPage.siteTitleCheck("Лучшее от банка"));
     }
 
+    @Feature("Заголовки разделов сайта")
+    @Story("Разделы на английской версии сайта")
     @ValueSource(strings = {"RETAIL BANKING", "SME`S", "CORPORATE CLIENTS", "FINANCIAL INSTITUTIONS", "PRIVATE BANKING"})
-    @ParameterizedTest(name = "Проверка заголовков на английской версии сайта {0}")
-    //@Description("Проверка заголовков на английской версии сайта")
-    @DisplayName("Проверка заголовков на английской версии сайта")
+    @ParameterizedTest(name = "Проверить, что заголовки на английской версии корректны {0}")
+        //@DisplayName("Проверка заголовков на английской версии сайта")
     void checkEnChapters(String testData) {
         step("Открыть сайт", () -> open(baseUrl));
         step("Перейти на английскую версию", () -> openBankMainPage.goToEnVersion("EN"));
         step("Подтвердить, что название раздела отображается корректно", () -> openBankMainPage.engChaptersCheck(testData));
     }
 
+    @Feature("Поиск по сайту")
+    @Story("Работа строки поиска")
     @Test
-    //@Description("Проверка поиска по сайту")
-    @DisplayName("Проверка поиска по сайту")
+    @DisplayName("Ввести значение и проверить, что в результатах поиска оно есть")
     void checkSiteSearch() {
         step("Открыть сайт", () -> open(baseUrl));
-        step("Активировать поле поиска и ввести значение", () -> openBankMainPage.siteSearchStart("карта"));
+        step("Активировать поле поиска и ввести слово", () -> openBankMainPage.siteSearchStart("карта"));
         step("Подтвердить, что во всех результатах поиска присутствует искомое значение", () -> openBankMainPage.siteSearchControl("карта"));
     }
 
+    @Feature("Предельные суммы вкладов в онлайн-калькуляторе")
+    @Story("Мин/макс суммы корректны")
     @CsvSource(value = {"50 000, 10 млн"})
-    @ParameterizedTest(name = "Проверка мин/макс значений сумм в онлайн-калькуляторе")
-    //@Description("Проверка мин/макс значений сумм в онлайн-калькуляторе")
-    @DisplayName("Проверка мин/макс значений сумм в онлайн-калькуляторе")
+    @ParameterizedTest(name = "Проверить мин/макс значения сумм в онлайн-калькуляторе")
+        //@DisplayName("Проверка мин/макс значений сумм в онлайн-калькуляторе")
     void checkMinMaxOnlineCalculator(String min, String max) {
         step("Открыть сайт", () -> open(baseUrl));
         step("Подтвердить, что минимальная и максимальная суммы вклада соответствуют требуемым", () -> openBankMainPage.limitSumCalculator(min, max));
     }
 
+    @Feature("Отображение курсов валют в отделениях")
+    @Story("Сравнить курсы покупки и продажи в отделениях ")
     @Test
-    //@Description("Проверка курсов покупки и продажи USD в отделениях")
-    @DisplayName("Проверка курсов покупки и продажи USD в отделениях")
+    @DisplayName("Курс продажи USD превышает курс покупки")
     void checkExchangeRates() {
         step("Открыть сайт", () -> open(baseUrl));
         step("Сравнить отображаемые курсы и подтвердить, что курс продажи превышает курс покупки", () -> openBankMainPage.exchangeRates());
     }
 
+    @Feature("Интернет-банк для частных лиц")
+    @Story("URL страницы ИБ для частных лиц правильный")
     @Test
-    //@Description("Проверка URL Интернет-банка для частных лиц")
-    @DisplayName("Проверка URL Интернет-банка для частных лиц")
+    @DisplayName("Проверить, что URL в адресной строке правильный")
     void checkInternetBankUrl() {
         step("Открыть главную страницу сайта", () -> open(baseUrl));
         step("Перейти на страницу ИБ для частных лиц по кнопке", () -> openBankIntBankPage.goToInternetBankPage());
         step("Подтвердить, что в адресной строке указан правильный URL", () -> openBankIntBankPage.urlCheckInternetBank());
     }
 
+    @Feature("Интернет-банк для частных лиц")
+    @Story("Попытка авторизации с некорректными данными")
     @Test
-    //@Description("Проверка входа в Интернет-банк с некорректными авторизационными данными")
-    @DisplayName("Проверка входа в Интернет-банк с некорректными авторизационными данными")
+    @DisplayName("Проверить, что вход в ИБ невозможен")
     void checkInternetBankAuthFail() {
         step("Открыть главную страницу сайта", () -> open(baseUrl));
         step("Перейти на страницу ИБ для частных лиц по кнопке", () -> openBankIntBankPage.goToInternetBankPage());

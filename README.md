@@ -23,10 +23,10 @@ ________
 
 ### <img src="images/logo/Allure_Report.svg" width="50" height="50"/> Формирование отчета **"Allure Report"** локально:
 
- <img src="images/screenshots/allure_report.png" width="80%" height="80%"/>  // allure overview screenshot!
+ <img src="images/screenshots/allure-overview.PNG" width="80%" height="80%"/>
 
- <img src="images/screenshots/allure_report.png" width="80%" height="80%"/>  // allure behaviors screenshot!
+ <img src="images/screenshots/allure-behaviors.PNG" width="80%" height="80%"/>
 
 ### <img src="images/logo/Telegram.svg" width="50" height="50"/> Уведомления о прохождении тестов в Telegram отправляем локально:
 
-<img src="images/screenshots/telegram_bot.png" width="30%" height="30%" />  
+<img src="images/screenshots/telegram.PNG" width="30%" height="30%" />  

@@ -1,9 +1,9 @@
 {
   "base": {
-    "project": "Quick_Project_homework:Wildberries_search",
-    "environment": "удаленный запуск с selenoid",
+    "project": "Quick_Project_homework:Open.Ru",
+    "environment": "локально",
     "comment": "оно работает",
-    "reportLink": "",
+    "reportLink": "n/a",
     "language": "ru",
     "messenger": "telegram",
     "allureFolder": "allure-report/",
